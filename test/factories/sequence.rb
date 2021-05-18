@@ -1,5 +1,5 @@
 FactoryBot.define do
-  sequence :string, aliases: [:first_name, :last_name, :password, :avatar, :type, :name, :description, :state] do |n|
+  sequence :string, aliases: [:first_name, :last_name, :password, :avatar, :kind, :name, :description, :state] do |n|
     "string#{n}"
   end
 
