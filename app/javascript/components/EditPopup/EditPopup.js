@@ -7,7 +7,7 @@ import Form from '../Form/Form';
 import useStyles from './useStyles';
 import { Button, Card, CardActions, CardContent, CardHeader, IconButton } from '@material-ui/core';
 import { CircularProgress, Modal } from '@material-ui/core';
-import { Close } from '@material-ui/icons/Close';
+import { Close } from '@material-ui/icons';
 
 const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate }) => {
   const [task, setTask] = useState(null);

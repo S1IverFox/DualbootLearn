@@ -45,7 +45,7 @@ const TaskBoard = () => {
   const styles = useStyles;
 
   const loadColumn = (state, page, perPage) => {
-    TasksRepository.index({
+    return TasksRepository.index({
       q: { stateEq: state },
       page,
       perPage,
@@ -63,12 +63,13 @@ const TaskBoard = () => {
 
   const generateBoard = () => {
     setBoard({
-      columns: STATES.map(({ key, value }) => ({
+      columns: STATES.map(({ key, value }) => {
+        return {
         id: key,
         title: value,
         cards: propOr({}, 'cards', boardCards[key]),
-        meta: propOr({}, 'meta', boardCards[key]),
-      })),
+        meta: propOr({}, 'meta', boardCards[key])}
+      }),
     });
   };
 
@@ -133,7 +134,6 @@ const TaskBoard = () => {
 
   const handleTaskUpdate = (task) => {
     const attributes = TaskForm.attributesToSubmit(task);
-
     return TasksRepository.update(task.id, attributes).then(() => {
       loadColumnInitial(task.state);
       handleClose();
@@ -141,7 +141,7 @@ const TaskBoard = () => {
   };
 
   const handleTaskDestroy = (task) => {
-    TasksRepository.destroy(task.id).then(() => {
+    return TasksRepository.destroy(task.id).then(() => {
       loadColumnInitial(task.state);
       handleClose();
     });
@@ -164,8 +164,8 @@ const TaskBoard = () => {
       {mode === MODES.EDIT && (
         <EditPopup
           onLoadCard={loadTask}
-          onDestroyCard={handleTaskDestroy}
-          onUpdateCard={handleTaskUpdate}
+          onCardDestroy={handleTaskDestroy}
+          onCardUpdate={handleTaskUpdate}
           onClose={handleClose}
           cardId={openedTaskId}
         />

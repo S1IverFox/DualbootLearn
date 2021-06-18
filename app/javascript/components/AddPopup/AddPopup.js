@@ -32,7 +32,8 @@ const AddPopup = ({ onClose, onCreateCard }) => {
       }
     });
   };
-  const handleChangeTextField = ({ target: { name, value } }) => changeTask({ ...task, [name]: value });
+  // const handleChangeTextField = ({ target: { name, value } }) => changeTask({ ...task, [name]: value });
+  const handleChangeTextField = (fieldName) => (event) => changeTask({ ...task, [fieldName]: event.target.value });
   const styles = useStyles();
 
   return (
