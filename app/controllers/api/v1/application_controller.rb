@@ -1,5 +1,5 @@
 class Api::V1::ApplicationController < Api::ApplicationController
-  RANSACK_DEFAULT_SORT = 'id desc'
+  RANSACK_DEFAULT_SORT = 'id desc'.freeze
 
   def build_meta(collection)
     {

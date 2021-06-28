@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { isNil } from 'ramda';
 
-import Form from '../Form/Form';
-
-import useStyles from './useStyles';
 import { Button, Card, CardActions, CardContent, CardHeader, IconButton } from '@material-ui/core';
 import { CircularProgress, Modal } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
+
+import TaskPresenter from 'presenters/TaskPresenter';
+import Form from '../Form/Form';
+import useStyles from './useStyles';
 
 const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate }) => {
   const [task, setTask] = useState(null);
@@ -51,7 +52,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
               <Close />
             </IconButton>
           }
-          title={isLoading ? 'Your task is loading. Please be patient.' : `Task # ${task.id} [${task.name}]`}
+          title={isLoading ? 'Your task is loading. Please be patient.' : TaskPresenter.title(task)}
         />
         <CardContent>
           {isLoading ? (
